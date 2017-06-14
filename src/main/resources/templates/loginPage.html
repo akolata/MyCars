@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="indigo-text center" th:text="|Login Page|">Login Page</h1>
+    <h1 class="indigo-text center" th:text="#{login.page}">Login Page</h1>
     <div class="row">
         <form class="col s12 m12 l12" method="post" th:action="@{/login}">
             <div class="row">
@@ -26,12 +26,12 @@
                 <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
                     <i class="material-icons prefix">lock</i>
                     <input name="password" id="password" type="password" class="validate"/>
-                    <label for="password">Password</label>
+                    <label for="password" th:text="#{login.password}">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col col s10 offset-s1 m8 offset-m2 l8 offset-l2 center-align">
-                    <input type="submit" value="Log me in!" class="btn btn-large"/>
+                    <input type="submit" value="Log me in!" th:value="#{login.button}" class="btn btn-large"/>
                 </div>
             </div>
         </form>

@@ -13,15 +13,25 @@
     <link href="../../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+    <ul id="lang-dropdown" class="dropdown-content">
+        <li><a href="?lang=pl">Polski</a></li>
+        <li><a href="?lang=en">Angielski</a></li>
+    </ul>
     <nav>
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo center">My cars</a>
             <ul id="navigation" class="left hide-on-med-and-down">
-                <li><a th:href="@{/home}" href="/home">Home</a></li>
-                <li><a th:href="@{/profile}" href="/profile">Profile</a></li>
-                <li><a href="sass.html">Cars</a></li>
-                <li><a href="sass.html">Statistics</a></li>
-                <li><a href="sass.html">Logout</a></li>
+                <li><a th:href="@{/home}" href="/home" th:text="#{menu.home}">Home</a></li>
+                <li><a th:href="@{/profile}" href="/profile" th:text="#{menu.profile}">Profile</a></li>
+                <li><a href="sass.html" th:text="#{menu.cars}">Cars</a></li>
+                <li><a href="sass.html" th:text="#{menu.statistics}">Statistics</a></li>
+                <li><a href="sass.html" th:text="#{menu.logout}">Logout</a></li>
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="lang-dropdown" th:text="#{menu.language}">
+                        <i class="small material-icons" >language</i>
+                        Language
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

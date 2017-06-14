@@ -12,10 +12,10 @@
             <div class="parallax"><img th:src="@{/images/bg.jpeg}"/></div>
         </div>
         <div class="row">
-            <h2 class="indigo-text center" th:text="|Hello, ${user}|" >Hello, user</h2>
+            <h2 class="indigo-text center" th:text="#{home.header}" >Hello, user</h2>
             <div class="row">
                 <div class="col s12 m12 l12 center-align">
-                    <p class="flow-text">Welcome to <em>My cars</em> application. Here You can manage Your cars</p>
+                    <p class="flow-text" th:text="#{home.text}">Welcome to <em>My cars</em> application. Here You can manage Your cars</p>
                 </div>
             </div>
             <div class="row">
@@ -25,8 +25,8 @@
                             <h2 class="center">
                                 <i class="large material-icons">perm_identity</i>
                             </h2>
-                            <h5 class="center">Profile</h5>
-                            <p class="center">
+                            <h5 class="center" th:text="#{home.profile.header}">Profile</h5>
+                            <p class="center" th:text="#{home.profile.content}">
                                 Edit Your profile. Add Your profile image and simply manage personal data
                             </p>
                         </div>
@@ -36,8 +36,8 @@
                             <h2 class="center" >
                                 <i class="large material-icons" >av_timer</i>
                             </h2>
-                            <h5 class="center">Cars</h5>
-                            <p>
+                            <h5 class="center" th:text="#{home.cars.header}">Cars</h5>
+                            <p th:text="#{home.cars.content}">
                                 Manage Your cars. Add/Modify/Remove their details and never again forget about insurance
                                 or auto repair date.
                             </p>
@@ -48,8 +48,8 @@
                             <h2 class="center ">
                                 <i class="large material-icons">equalizer</i>
                             </h2>
-                            <h5 class="center">Statistics</h5>
-                            <p>
+                            <h5 class="center" th:text="#{home.statistics.header}">Statistics</h5>
+                            <p th:text="#{home.statistics.content}">
                                 Check Your statistics
                                 See how much money you spend each year for Your car maintenance.
                             </p>

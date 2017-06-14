@@ -2,8 +2,7 @@
     $(document).ready(function () {
 
         $('.parallax').parallax();
-
-
+        $('.dropdown-button').dropdown();
 
 
         $('#navigation a').each(function () {
