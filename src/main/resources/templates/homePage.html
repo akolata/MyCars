@@ -7,10 +7,56 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="row" layout:fragment="content">
+    <div layout:fragment="content">
+        <div class="parallax-container">
+            <div class="parallax"><img th:src="@{/images/bg.jpeg}"/></div>
+        </div>
         <div class="row">
-            <h2 class="indigo-text center" th:text="|Hello, ${user}">Hello, user</h2>
-            <span th:text="|Witaj w Thymeleaf|">Test</span>
+            <h2 class="indigo-text center" th:text="|Hello, ${user}|" >Hello, user</h2>
+            <div class="row">
+                <div class="col s12 m12 l12 center-align">
+                    <p class="flow-text">Welcome to <em>My cars</em> application. Here You can manage Your cars</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="section">
+                    <div class="icon-block">
+                        <div class="col s12 m4 l4">
+                            <h2 class="center">
+                                <i class="large material-icons">perm_identity</i>
+                            </h2>
+                            <h5 class="center">Profile</h5>
+                            <p class="center">
+                                Edit Your profile. Add Your profile image and simply manage personal data
+                            </p>
+                        </div>
+                    </div>
+                    <div class="icon-block">
+                        <div class="col s12 m4 l4">
+                            <h2 class="center" >
+                                <i class="large material-icons" >av_timer</i>
+                            </h2>
+                            <h5 class="center">Cars</h5>
+                            <p>
+                                Manage Your cars. Add/Modify/Remove their details and never again forget about insurance
+                                or auto repair date.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="icon-block">
+                        <div class="col s12 m4 l4">
+                            <h2 class="center ">
+                                <i class="large material-icons">equalizer</i>
+                            </h2>
+                            <h5 class="center">Statistics</h5>
+                            <p>
+                                Check Your statistics
+                                See how much money you spend each year for Your car maintenance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

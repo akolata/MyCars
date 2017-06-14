@@ -1,0 +1,29 @@
+.parallax-container {
+    height: 500px;
+}
+
+.nav-wrapper{
+    background-color: #6a6a4e;
+}
+
+.icon-block{
+    padding: 0 15px;
+}
+
+.icon-block p{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+
+@media all and (max-width: 600px) {
+    .parallax-container {
+        display: none;
+    }
+}

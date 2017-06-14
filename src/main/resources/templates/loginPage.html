@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html ;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initialscale=1, maximum-scale=1, user-scalable=no" />
+    <link href="/webjars/materializecss/0.96.0/css/materialize.css"
+          type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <title>Login</title>
 </head>
 <body>
-$END$
+<div class="container">
+    <h1 class="indigo-text center" th:text="|Login Page|">Login Page</h1>
+    <div class="row">
+        <form class="col s12 m12 l12" method="post" th:action="@{/login}">
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input name="user" id="username" type="text" class="validate"/>
+                    <label for="username">Login</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <i class="material-icons prefix">lock</i>
+                    <input name="password" id="password" type="password" class="validate"/>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col s10 offset-s1 m8 offset-m2 l8 offset-l2 center-align">
+                    <input type="submit" value="Log me in!" class="btn btn-large"/>
+                </div>
+            </div>
+        </form>
+     </div>
+</div>
+    <script src="/webjars/jquery/2.1.4/jquery.js"></script>
+    <script src="/webjars/materializecss/0.96.0/js/materialize.js"></script>
 </body>
 </html>
+<!--https://www.pexels.com/photo/pacificcoasthighway-california-mustang-92108/-->
