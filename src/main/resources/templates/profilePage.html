@@ -9,15 +9,22 @@
 <body>
     <div layout:fragment="content">
         <h1 th:text="|${user}|" class="indigo-text center">User</h1>
-        <div class="row">
-            <div class="col s12 m8 l2 offset-m2 offset-l2">
-                <img th:width="100px" th:height="100px" style="border: 1px solid black"/>
+        <div class="row" th:if="${image}">
+            <div class="col s12 m12 l12 center red-text" th:text="${error}" th:if="${error}">Error while image loading</div>
+            <div class="center-align">
+                <img th:src="@{/image}" class="profile-image"/>
             </div>
         </div>
         <div class="row">
             <form method="post" enctype="multipart/form-data" class="col s12 m8 l8 offset-m2 offset-l2">
-                <div class="input-field col s6 m4 l4">
-                    <input type="file" id="file" name="file" value="Browse file..." th:value="#{profile.button.file}"/>
+                <div class="file-field input-field col s6 m4 l4">
+                    <div class="btn">
+                        <span th:text="#{profile.button.file}">File</span>
+                        <input type="file" name="file"/>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text"/>
+                    </div>
                 </div>
                 <div class="col s6 m4 l4 center">
                     <button class="btn indigo waves-effect waves-light"
@@ -34,24 +41,24 @@
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
                         <label for="login" th:text="#{profile.label.login}">Login</label>
-                        <input type="text" id="login" th:field="${profileForm.login}" th:errorClass="invalid"/>
+                        <input type="text" id="login" th:field="${profileForm.login}" th:errorClass="invalid" required="required"/>
                         <div th:errors="*{login}" class="red-text">Error</div>
                     </div>
                     <div class="input-field col s12 m6 l6">
                         <label for="password" th:text="#{profile.label.password}">Password</label>
-                        <input type="password" id="password" th:field="${profileForm.password}" th:errorClass="invalid"/>
+                        <input type="password" id="password" th:field="${profileForm.password}" th:errorClass="invalid" required="required"/>
                         <div th:errors="*{password}" class="red-text">Error</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
                         <label for="firstName" th:text="#{profile.label.first}">firstName</label>
-                        <input type="text" id="firstName" th:field="${profileForm.firstName}" th:errorClass="invalid"/>
+                        <input type="text" id="firstName" th:field="${profileForm.firstName}" th:errorClass="invalid" required="required"/>
                         <div th:errors="*{firstName}" class="red-text">Error</div>
                     </div>
                     <div class="input-field col s12 m6 l6">
                         <label for="lastName" th:text="#{profile.label.last}">lastName</label>
-                        <input type="text" id="lastName" th:field="${profileForm.lastName}" th:errorClass="invalid"/>
+                        <input type="text" id="lastName" th:field="${profileForm.lastName}" th:errorClass="invalid" required="required"/>
                         <div th:errors="*{lastName}" class="red-text">Error</div>
                     </div>
                 </div>

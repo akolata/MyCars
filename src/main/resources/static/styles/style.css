@@ -20,10 +20,26 @@
     padding-bottom: 1rem;
 }
 
-
+.profile-image{
+    height: 500px;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
 
 @media all and (max-width: 600px) {
     .parallax-container {
         display: none;
+    }
+    .profile-image{
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media all and (min-width: 601px) and (max-width: 992px){
+    .profile-image{
+        height: 300px;
+        width: 300px;
     }
 }

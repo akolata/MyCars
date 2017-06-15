@@ -2,6 +2,7 @@ package pl.kolata.dto;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.kolata.entity.User;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -79,6 +80,17 @@ public class ProfileForm {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public static ProfileForm createProfileFormFromUser(User user){
+        ProfileForm profileForm = new ProfileForm();
+        profileForm.login = user.getLogin();
+        profileForm.password = user.getPassword();
+        profileForm.firstName = user.getFirstName();
+        profileForm.lastName = user.getLastName();
+        profileForm.email = user.getEmail();
+        profileForm.phone = user.getPhone();
+        return profileForm;
     }
 
     @Override
