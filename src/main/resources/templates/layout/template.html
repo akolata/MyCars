@@ -24,7 +24,7 @@
             <ul id="navigation" class="left hide-on-med-and-down">
                 <li><a th:href="@{/home}" href="/home" th:text="#{menu.home}">Home</a></li>
                 <li><a th:href="@{/profile}" href="/profile" th:text="#{menu.profile}">Profile</a></li>
-                <li><a href="sass.html" th:text="#{menu.cars}">Cars</a></li>
+                <li><a th:href="@{/profile/cars}" th:text="#{menu.cars}">Cars</a></li>
                 <li><a href="sass.html" th:text="#{menu.statistics}">Statistics</a></li>
                 <li>
                     <form method="post" th:action="@{/logout}">

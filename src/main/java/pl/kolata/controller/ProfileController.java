@@ -2,6 +2,7 @@ package pl.kolata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kolata.dto.ProfileForm;
 import pl.kolata.entity.User;
-import pl.kolata.repository.UserRepository;
+import pl.kolata.service.UserService;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -24,12 +25,13 @@ import java.util.Locale;
 @RequestMapping("/profile")
 public class ProfileController {
 
-    private UserRepository userRepository;
-    private  MessageSource messageSource;
+    private User user;
+    private UserService userService;
+    private MessageSource messageSource;
 
     @Autowired
-    public ProfileController(UserRepository userRepository,MessageSource messageSource){
-        this.userRepository = userRepository;
+    public ProfileController(UserService userService, MessageSource messageSource){
+        this.userService = userService;
         this.messageSource = messageSource;
     }
 
@@ -47,31 +49,32 @@ public class ProfileController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/{id}")
-    public String showProfilePage(
-            @PathVariable(value = "id",required = true) Long id, Model model){
-        User user = userRepository.findAll().get(0);
+    @GetMapping
+    public String showProfilePage(Model model){
+        user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         model.addAttribute("profileForm",ProfileForm.createProfileFormFromUser(user));
         model.addAttribute("image",user.getProfileImage() != null);
+
         return "profilePage";
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.POST,params = {"load"})
+    @RequestMapping(method = RequestMethod.POST,params = {"load"})
     public String onPictureLoad(MultipartFile file, RedirectAttributes redirectAttributes,Locale locale) throws IOException {
 
         if(file.isEmpty()){
             redirectAttributes.addFlashAttribute("error",messageSource.getMessage("image.file.empty",null,locale));
-            return "redirect:/profile/1";
+            return "redirect:/profile";
         }else if (!file.getContentType().startsWith("image")){
             redirectAttributes.addFlashAttribute("error",messageSource.getMessage("image.file.invalid",null,locale));
-            return "redirect:/profile/1";
+            return "redirect:/profile";
         }
 
-        User user = userRepository.findAll().get(0);
+        user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user.setProfileImage(file.getBytes());
-        userRepository.saveAndFlush(user);
+        userService.saveAndFlush(user);
 
-        return  "redirect:/profile/1";
+        return  "redirect:/profile";
     }
 
     @RequestMapping(method = RequestMethod.POST,params = {"save"})
@@ -81,10 +84,19 @@ public class ProfileController {
             return "profilePage";
         }
 
-        User user = userRepository.findAll().get(0);
+        user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user.updateProfileFromProfileForm(profileForm);
-        userRepository.saveAndFlush(user);
+        userService.saveAndFlush(user);
 
-        return "redirect:/profile/" + user.getId();
+        return "redirect:/profile";
+    }
+
+    @GetMapping(value = "/cars")
+    public String showUsersCars(Model model){
+
+        user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("cars",user.getCars());
+
+        return "carsPage";
     }
 }

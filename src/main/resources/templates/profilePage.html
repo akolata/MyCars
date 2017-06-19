@@ -8,7 +8,7 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <h1 th:text="|${user}|" class="indigo-text center">User</h1>
+        <h1 th:text="${profileForm.login}" class="indigo-text center">User</h1>
         <div class="row" th:if="${image}">
             <div class="col s12 m12 l12 center red-text" th:text="${error}" th:if="${error}">Error while image loading</div>
             <div class="center-align">

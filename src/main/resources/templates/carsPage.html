@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout"
+      layout:decorator="layout/template">
+<head>
+    <title>Profile</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 th:text="#{cars.header}" class="indigo-text center">Cars</h1>
+    <div class="row">
+        <div class="col s12 m8 l8 offset-m2 offset-l2">
+            <div class="collection">
+                <a th:each="car : ${cars}" th:text="|${car.brand} ${car.model}|" th:href="@{/profile/cars(id=${car.id})}" class="collection-item">Car</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

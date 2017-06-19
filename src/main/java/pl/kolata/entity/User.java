@@ -34,7 +34,7 @@ implements UserDetails{
     @Lob
     private byte[] profileImage;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNER_ID")
     private Set<Car> cars;
 
