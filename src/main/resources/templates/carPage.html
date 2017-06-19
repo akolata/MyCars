@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout"
+      layout:decorator="layout/template">
+<head>
+    <title>Car Page</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="indigo-text center" >Car Details</h1>
+    <div class="row">
+        <form class="col s12 m12 l12">
+            <div class="row">
+                <div class="input-field col s12 m6 l3">
+                    <label for="brand" >Brand</label>
+                    <input id="brand" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="model" >Model</label>
+                    <input id="model" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="mileage" >Mileage</label>
+                    <input id="mileage" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="fuel" >Fuel type</label>
+                    <select id="fuel" type="text" >
+                        <option value="" disabled="disabled" selected="selected">Choose fuel type</option>
+                        <option>Diesel</option>
+                        <option>Petrol</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 l3">
+                    <label for="insurance" >Insurance Date</label>
+                    <input id="insurance" type="text" th:placeholder="#{detail.date.placeholder}"/>
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="service" >Service Date</label>
+                    <input id="service" type="text" th:placeholder="#{detail.date.placeholder}"/>
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="engine" >Engine size(cm3)</label>
+                    <input id="engine" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="hp" >HP</label>
+                    <input id="hp" type="text" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 l3">
+                    <label for="average" >Average consumption (L)</label>
+                    <input id="average" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="city" >City consumption (L)</label>
+                    <input id="city" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="highway" >Highway consumption (L)</label>
+                    <input id="highway" type="text" />
+                </div>
+                <div class="input-field col s12 m6 l3">
+                    <label for="yearly" >Yearly distance</label>
+                    <input id="yearly" type="text" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12 l12 center">
+                    <button class="btn indigo waves-effect waves-light"
+                            type="submit" name="save" th:text="#{detail.button}" >
+                        Update
+                        <i class="mdi-content-send right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

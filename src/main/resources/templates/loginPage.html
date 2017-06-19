@@ -14,11 +14,11 @@
 <div class="container">
     <h1 class="indigo-text center" th:text="#{login.page}">Login Page</h1>
     <div class="row">
-        <form class="col s12 m12 l12" method="post" th:action="@{/login}">
+        <form class="col s12 m12 l12" method="post" th:action="@{/login}" action="/login">
             <div class="row">
                 <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input name="user" id="username" type="text" class="validate"/>
+                    <input name="username" id="username" type="text" class="validate"/>
                     <label for="username">Login</label>
                 </div>
             </div>
@@ -29,9 +29,16 @@
                     <label for="password" th:text="#{login.password}">Password</label>
                 </div>
             </div>
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
             <div class="row">
                 <div class="col col s10 offset-s1 m8 offset-m2 l8 offset-l2 center-align">
                     <input type="submit" value="Log me in!" th:value="#{login.button}" class="btn btn-large"/>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 </div>
             </div>
         </form>

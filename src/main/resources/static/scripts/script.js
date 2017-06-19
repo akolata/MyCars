@@ -3,7 +3,7 @@
 
         $('.parallax').parallax();
         $('.dropdown-button').dropdown();
-
+        $('select').material_select();
 
         $('#navigation a').each(function () {
             var location = window.location.href;

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extrasspringsecurity4">
 <head lang="en">
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html ;charset=UTF-8"/>
@@ -25,7 +26,11 @@
                 <li><a th:href="@{/profile}" href="/profile" th:text="#{menu.profile}">Profile</a></li>
                 <li><a href="sass.html" th:text="#{menu.cars}">Cars</a></li>
                 <li><a href="sass.html" th:text="#{menu.statistics}">Statistics</a></li>
-                <li><a href="sass.html" th:text="#{menu.logout}">Logout</a></li>
+                <li>
+                    <form method="post" th:action="@{/logout}">
+                        <input type="submit" th:value="#{menu.logout}" class="logout"/>
+                    </form>
+                </li>
                 <li>
                     <a class="dropdown-button" href="#!" data-activates="lang-dropdown" th:text="#{menu.language}">
                         <i class="small material-icons" >language</i>

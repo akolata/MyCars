@@ -2,6 +2,11 @@
     height: 500px;
 }
 
+.logout{
+    background-color: #6a6a4e;
+    border: none
+}
+
 .nav-wrapper{
     background-color: #6a6a4e;
 }
