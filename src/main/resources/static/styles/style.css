@@ -32,12 +32,23 @@
     border-radius: 50%;
 }
 
+.car-image{
+    height:400px;
+    width: 600px;
+}
+
 @media all and (max-width: 600px) {
     .parallax-container {
         display: none;
     }
+
     .profile-image{
         height: 100px;
+        width: 100px;
+    }
+
+    .car-image{
+        height:66px;
         width: 100px;
     }
 }
@@ -45,6 +56,11 @@
 @media all and (min-width: 601px) and (max-width: 992px){
     .profile-image{
         height: 300px;
+        width: 300px;
+    }
+
+    .car-image{
+        height: 200px;
         width: 300px;
     }
 }

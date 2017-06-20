@@ -37,14 +37,14 @@ public class ProfileController {
 
     @ExceptionHandler(IOException.class)
     public ModelAndView handleIOException(Locale locale){
-        ModelAndView modelAndView = new ModelAndView("/profile/1");
+        ModelAndView modelAndView = new ModelAndView("/profile");
         modelAndView.addObject("error",messageSource.getMessage("image.io.exception",null,locale));
         return modelAndView;
     }
 
     @RequestMapping("/uploadError")
     public ModelAndView handleUploadError(Locale locale){
-        ModelAndView modelAndView = new ModelAndView("/profile/1");
+        ModelAndView modelAndView = new ModelAndView("/profile");
         modelAndView.addObject("error",messageSource.getMessage("image.file.too.big",null,locale));
         return modelAndView;
     }
