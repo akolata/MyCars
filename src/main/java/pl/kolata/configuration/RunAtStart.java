@@ -9,7 +9,7 @@ import pl.kolata.repository.CarRepository;
 import pl.kolata.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -79,8 +79,8 @@ public class RunAtStart {
         carDetails.setHighwayConsumption(6.0f);
         carDetails.setEngineSize(1999f);
         carDetails.setHorsePower(180l);
-        carDetails.setInsuranceDate(new Date());
-        carDetails.setServiceDate(new Date());
+        carDetails.setInsuranceDate(LocalDate.now());
+        carDetails.setServiceDate(LocalDate.now());
         carDetails.setYearlyDistance(25000l);
 
         car.setCarDetails(carDetails);
@@ -100,8 +100,8 @@ public class RunAtStart {
         carDetails.setHighwayConsumption(7.0f);
         carDetails.setEngineSize(1400f);
         carDetails.setHorsePower(140l);
-        carDetails.setInsuranceDate(new Date());
-        carDetails.setServiceDate(new Date());
+        carDetails.setInsuranceDate(LocalDate.now());
+        carDetails.setServiceDate(LocalDate.now());
         carDetails.setYearlyDistance(5000l);
 
         car.setCarDetails(carDetails);

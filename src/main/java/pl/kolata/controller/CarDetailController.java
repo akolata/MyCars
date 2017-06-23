@@ -4,13 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kolata.entity.Car;
+import pl.kolata.entity.FuelType;
 import pl.kolata.repository.CarRepository;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -46,7 +49,8 @@ public class CarDetailController {
     }
 
     @GetMapping(value = "/car")
-    public String showCarDetails(@RequestParam(name = "id") Long id,Model model) {
+    public String showCarDetails(@RequestParam(name = "id") Long id,
+                                 Model model) {
 
         Car car = carRepository.findOne(id);
         model.addAttribute("car",car);
@@ -74,6 +78,25 @@ public class CarDetailController {
         carRepository.saveAndFlush(car);
 
         return String.format(REDIRECT_TO_CAR_PAGE,id);
+    }
+
+    @PostMapping(value = "/car",params = {"save"})
+    public String carDetailsEdited(@RequestParam(name = "id") String id,
+                                   @Valid Car car,
+                                   BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return String.format(REDIRECT_TO_CAR_PAGE,id);
+        }
+
+        carRepository.saveAndFlush(car);
+
+        return String.format(REDIRECT_TO_CAR_PAGE,id);
+    }
+
+    @ModelAttribute(name = "fuelTypes")
+    public FuelType[] fuelTypes(){
+        return FuelType.values();
     }
 
 }

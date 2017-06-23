@@ -1,9 +1,8 @@
 package pl.kolata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.kolata.entity.Car;
@@ -13,7 +12,6 @@ import pl.kolata.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URLConnection;
 
 /**
  * Created by Aleksander on 2017-06-15.
@@ -29,13 +27,11 @@ public class PictureImageController {
     @RequestMapping("/image")
     public void writePicture(HttpServletRequest request, HttpServletResponse response){
         try{
-            User u = userRepository.findAll().get(0);
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-            response.getOutputStream().write(u.getProfileImage());
+            response.getOutputStream().write(user.getProfileImage());
             response.setContentType("image/jpg");
-        }catch(Exception e){
-
-        }
+        }catch(Exception e){}
     }
 
     @RequestMapping("/image/cars/car")
@@ -47,8 +43,6 @@ public class PictureImageController {
 
             response.getOutputStream().write(car.getCarImage());
             response.setContentType("image/jpg");
-        }catch(Exception e){
-
-        }
+        }catch(Exception e){}
     }
 }

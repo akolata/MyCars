@@ -36,63 +36,72 @@
                 </div>
             </form>
         </div>
-        <form class="col s12 m12 l12" th:object="${car}">
+        <form method="post" class="col s12 m12 l12" th:object="${car}" th:action="@{/profile/cars/car(id=${car.id})}">
             <div class="row">
                 <div class="input-field col s12 m6 l3">
-                    <label for="brand" >Brand</label>
-                    <input id="brand" type="text" th:field="${car.brand}"/>
+                    <label for="brand" th:text="#{car.label.brand}">Brand</label>
+                    <input id="brand" type="text" th:field="${car.brand}" th:errorClass="invalid" required="required"/>
+                    <div th:errors="*{brand}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="model" >Model</label>
-                    <input id="model" type="text" />
+                    <label for="model" th:text="#{car.label.model}">Model</label>
+                    <input id="model" type="text" th:field="${car.model}" th:errorClass="invalid" required="required"/>
+                    <div th:errors="*{model}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="mileage" >Mileage</label>
-                    <input id="mileage" type="text" />
+                    <label for="mileage" th:text="#{car.label.mileage}">Mileage</label>
+                    <input id="mileage" type="text" th:field="${car.mileage}" th:errorClass="invalid" required="required"/>
+                    <div th:errors="*{mileage}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <select id="fuel" type="text" >
-                        <option value="" disabled="disabled" selected="selected">Choose fuel type</option>
-                        <option>Diesel</option>
-                        <option>Petrol</option>
+                    <select th:field="${car.fuelType}" id="fuel">
+                        <option th:each="type : ${fuelTypes}" th:text="${type}" th:value="${type}">FuelType</option>
                     </select>
-                    <label for="fuel" >Fuel type</label>
+                    <label for="fuel" th:text="#{car.label.fueltype}">Fuel type</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l3">
-                    <label for="insurance" >Insurance Date</label>
-                    <input id="insurance" type="text" th:placeholder="#{detail.date.placeholder}"/>
+                    <label for="insurance" th:text="#{car.label.insurance}">Insurance Date</label>
+                    <input id="insurance" type="text" th:placeholder="#{detail.date.placeholder}" th:field="${car.carDetails.insuranceDate}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.insuranceDate}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="service" >Service Date</label>
-                    <input id="service" type="text" th:placeholder="#{detail.date.placeholder}"/>
+                    <label for="service" th:text="#{car.label.service}">Service Date</label>
+                    <input id="service" type="text" th:placeholder="#{detail.date.placeholder}" th:field="${car.carDetails.serviceDate}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.serviceDate}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="engine" >Engine size(cm3)</label>
-                    <input id="engine" type="text" />
+                    <label for="engine" th:text="#{car.label.enginesize}">Engine size(cm3)</label>
+                    <input id="engine" type="text" th:field="${car.carDetails.engineSize}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.engineSize}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="hp" >HP</label>
-                    <input id="hp" type="text" />
+                    <label for="hp" th:text="#{car.label.hp}">HP</label>
+                    <input id="hp" type="text" th:field="${car.carDetails.horsePower}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.horsePower}" class="red-text">Error</div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l3">
-                    <label for="average" >Average consumption (L)</label>
-                    <input id="average" type="text" />
+                    <label for="average" th:text="#{car.label.average}">Average consumption (L)</label>
+                    <input id="average" type="text" th:field="${car.carDetails.averageConsumption}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.averageConsumption}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="city" >City consumption (L)</label>
-                    <input id="city" type="text" />
+                    <label for="city" th:text="#{car.label.city}">City consumption (L)</label>
+                    <input id="city" type="text" th:field="${car.carDetails.cityConsumption}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.cityConsumption}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="highway" >Highway consumption (L)</label>
-                    <input id="highway" type="text" />
+                    <label for="highway" th:text="#{car.label.highway}">Highway consumption (L)</label>
+                    <input id="highway" type="text" th:field="${car.carDetails.highwayConsumption}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.highwayConsumption}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">
-                    <label for="yearly" >Yearly distance</label>
-                    <input id="yearly" type="text" />
+                    <label for="yearly" th:text="#{car.label.distance}">Yearly distance</label>
+                    <input id="yearly" type="text" th:field="${car.carDetails.yearlyDistance}" th:errorClass="invalid"/>
+                    <div th:errors="*{carDetails.yearlyDistance}" class="red-text">Error</div>
                 </div>
             </div>
             <div class="row">

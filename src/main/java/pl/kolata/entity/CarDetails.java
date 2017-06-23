@@ -2,9 +2,7 @@ package pl.kolata.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by Aleksander on 2017-06-15.
@@ -13,11 +11,9 @@ import java.util.Date;
 public class CarDetails {
 
     @Column(name = "INSURANCE_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date insuranceDate;
+    private LocalDate insuranceDate;
     @Column(name = "SERVICE_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date serviceDate;
+    private LocalDate serviceDate;
     @Column(name = "ENGINE_SIZE",precision = 0)
     private Float engineSize;
     @Column(name="HP",precision = 0)
@@ -33,19 +29,19 @@ public class CarDetails {
 
     public CarDetails(){}
 
-    public Date getInsuranceDate() {
+    public LocalDate getInsuranceDate() {
         return insuranceDate;
     }
 
-    public void setInsuranceDate(Date insuranceDate) {
+    public void setInsuranceDate(LocalDate insuranceDate) {
         this.insuranceDate = insuranceDate;
     }
 
-    public Date getServiceDate() {
+    public LocalDate getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(Date serviceDate) {
+    public void setServiceDate(LocalDate serviceDate) {
         this.serviceDate = serviceDate;
     }
 
