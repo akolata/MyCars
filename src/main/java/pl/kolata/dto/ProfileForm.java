@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ * Class used as data transfer object as user's profile form
  * Created by Aleksander on 2017-06-14.
  */
 public class ProfileForm {

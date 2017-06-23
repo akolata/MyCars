@@ -1,7 +1,6 @@
 package pl.kolata.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import pl.kolata.entity.User;
 
 /**

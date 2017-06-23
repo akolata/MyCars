@@ -3,7 +3,6 @@ package pl.kolata.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import pl.kolata.dto.ProfileForm;
-
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
+ * User's entity
  * Created by Aleksander on 2017-06-15.
  */
 @Entity

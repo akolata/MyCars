@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * Controller used to display login page
  * Created by Aleksander on 2017-06-12.
  */
 @Controller

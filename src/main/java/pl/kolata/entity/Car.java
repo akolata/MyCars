@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 /**
+ * Car entity
  * Created by Aleksander on 2017-06-15.
  */
 @Entity

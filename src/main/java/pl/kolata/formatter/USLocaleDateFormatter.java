@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
+ * Class used to change default's Spring Boot date format
  * Created by Aleksander on 2017-06-14.
  */
 public class USLocaleDateFormatter

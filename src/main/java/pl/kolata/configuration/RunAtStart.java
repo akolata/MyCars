@@ -7,13 +7,13 @@ import pl.kolata.entity.*;
 import pl.kolata.repository.AuthorityRepository;
 import pl.kolata.repository.CarRepository;
 import pl.kolata.repository.UserRepository;
-
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Class used to initialize data, running before application start
  * Created by Aleksander on 2017-06-15.
  */
 @Component
@@ -30,6 +30,9 @@ public class RunAtStart {
         this.authorityRepository = authorityRepository;
     }
 
+    /**
+     * Method used to initialize application sample data
+     */
     @PostConstruct
     public void initialize(){
         User user = generateSampleUser();
@@ -68,8 +71,8 @@ public class RunAtStart {
 
     private Car generateSampleCar(){
         Car car = new Car();
-        car.setBrand("Ford");
-        car.setModel("Mondeo");
+        car.setBrand("Brand");
+        car.setModel("Model");
         car.setMileage(35000f);
         car.setFuelType(FuelType.DIESEL);
 
@@ -89,8 +92,8 @@ public class RunAtStart {
 
     private Car generateSampleCar2(){
         Car car = new Car();
-        car.setBrand("Skoda");
-        car.setModel("Octavia");
+        car.setBrand("Brand");
+        car.setModel("Model");
         car.setMileage(29000f);
         car.setFuelType(FuelType.PETROL);
 

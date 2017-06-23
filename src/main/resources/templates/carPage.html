@@ -10,7 +10,7 @@
 <div layout:fragment="content">
     <h1 class="indigo-text center" >Car Details</h1>
     <div class="row">
-        <div class="row" th:if="${image}">
+        <div class="row" th:if="${hasImage}">
             <div class="col s12 m12 l12 center red-text" th:text="${error}" th:if="${error}">Error while image loading</div>
             <div class="center-align">
                 <img th:src="@{/image/cars/car(id = ${car.id})}" class="car-image"/>

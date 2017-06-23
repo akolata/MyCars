@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 import java.time.LocalDate;
 
 /**
+ * Class used with Car entity - used to separate car's details
  * Created by Aleksander on 2017-06-15.
  */
 @Embeddable

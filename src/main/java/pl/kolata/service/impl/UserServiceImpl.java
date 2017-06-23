@@ -14,8 +14,12 @@ import pl.kolata.service.UserService;
 public class UserServiceImpl
 implements UserService{
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User saveAndFlush(User user) {

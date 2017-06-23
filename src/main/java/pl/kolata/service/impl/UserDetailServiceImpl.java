@@ -14,8 +14,12 @@ import pl.kolata.service.UserDetailService;
 public class UserDetailServiceImpl
 implements UserDetailService{
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserDetailServiceImpl(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

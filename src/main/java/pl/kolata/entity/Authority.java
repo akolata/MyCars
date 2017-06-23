@@ -1,11 +1,10 @@
 package pl.kolata.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 
 /**
+ * Entity used in project as user's authorities table
  * Created by Aleksander on 2017-06-16.
  */
 @Entity

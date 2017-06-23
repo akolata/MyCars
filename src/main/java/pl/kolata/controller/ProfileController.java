@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
+ * Controller used with user's profile page
  * Created by Aleksander on 2017-06-14.
  */
 @Controller
@@ -38,6 +39,11 @@ public class ProfileController {
         this.messageSource = messageSource;
     }
 
+    /**
+     * Called when IOException occurs
+     * @param locale current Locale
+     * @return cars page model
+     */
     @ExceptionHandler(IOException.class)
     public ModelAndView handleIOException(Locale locale){
         ModelAndView modelAndView = new ModelAndView("/profile");
@@ -45,6 +51,11 @@ public class ProfileController {
         return modelAndView;
     }
 
+    /**
+     * Called if any error connected with image file will occure
+     * @param locale current Locale
+     * @return cars page model
+     */
     @RequestMapping("/uploadError")
     public ModelAndView handleUploadError(Locale locale){
         ModelAndView modelAndView = new ModelAndView("/profile");
@@ -52,6 +63,11 @@ public class ProfileController {
         return modelAndView;
     }
 
+    /**
+     * Called to show user profile page - adds user data to model
+     * @param model view model
+     * @return user's profile page
+     */
     @GetMapping
     public String showProfilePage(Model model){
         user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -62,8 +78,18 @@ public class ProfileController {
         return "profilePage";
     }
 
+    /**
+     * Called when user will submit form and choose which image to load into db as profile image
+     * @param file file chose by user
+     * @param redirectAttributes
+     * @param locale current Locale
+     * @return car edition page
+     * @throws IOException if something gone wrong while reading bytes from file
+     */
     @RequestMapping(method = RequestMethod.POST,params = {"load"})
-    public String onPictureLoad(MultipartFile file, RedirectAttributes redirectAttributes,Locale locale) throws IOException {
+    public String loadProfilePicture(MultipartFile file,
+                                     RedirectAttributes redirectAttributes,
+                                     Locale locale) throws IOException {
 
         if(file.isEmpty()){
             redirectAttributes.addFlashAttribute("error",messageSource.getMessage("image.file.empty",null,locale));
@@ -80,8 +106,14 @@ public class ProfileController {
         return  "redirect:/profile";
     }
 
+    /**
+     * Called when user will save profile data
+     * @param profileForm profile data from form
+     * @param bindingResult result of form validation
+     * @return user's profile page
+     */
     @RequestMapping(method = RequestMethod.POST,params = {"save"})
-    public String saveProfileData(@Valid ProfileForm profileForm, BindingResult bindingResult){
+    public String saveProfile(@Valid ProfileForm profileForm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "profilePage";
@@ -94,6 +126,11 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
+    /**
+     * Method is getting user's cars from db and adding them to the model
+     * @param model page model
+     * @return page with user's cars
+     */
     @GetMapping(value = "/cars")
     public String showUsersCars(Model model){
 

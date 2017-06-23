@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.kolata.service.UserDetailService;
 
 /**
+ * Class used to configure Spring Security settings
  * Created by Aleksander on 2017-06-16.
  */
 @Configuration
@@ -20,9 +21,13 @@ import pl.kolata.service.UserDetailService;
 public class SecurityConfiguration
 extends WebSecurityConfigurerAdapter{
 
-    @Autowired
     private UserDetailService userDetailService;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    public SecurityConfiguration(UserDetailService userDetailService){
+        this.userDetailService = userDetailService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
