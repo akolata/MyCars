@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.kolata.dto.ProfileForm;
 import pl.kolata.entity.User;
+import pl.kolata.repository.UserRepository;
 import pl.kolata.service.UserService;
 
 import javax.validation.Valid;
@@ -27,11 +28,13 @@ public class ProfileController {
 
     private User user;
     private UserService userService;
+    private UserRepository userRepository;
     private MessageSource messageSource;
 
     @Autowired
-    public ProfileController(UserService userService, MessageSource messageSource){
+    public ProfileController(UserService userService, UserRepository userRepository, MessageSource messageSource){
         this.userService = userService;
+        this.userRepository = userRepository;
         this.messageSource = messageSource;
     }
 
@@ -95,7 +98,9 @@ public class ProfileController {
     public String showUsersCars(Model model){
 
         user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("cars",user.getCars());
+
+        User userInDb = userRepository.findByLogin(user.getLogin());
+        model.addAttribute("cars",userInDb.getCars());
 
         return "carsPage";
     }

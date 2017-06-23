@@ -89,9 +89,19 @@ public class CarDetailController {
             return String.format(REDIRECT_TO_CAR_PAGE,id);
         }
 
+        car.setCarImage(carRepository.findOne(Long.valueOf(car.getId())).getCarImage());
         carRepository.saveAndFlush(car);
 
         return String.format(REDIRECT_TO_CAR_PAGE,id);
+    }
+
+    @PostMapping(value = "/car",params = {"delete"})
+    public String deleteCar(@RequestParam(name = "id") String id){
+
+        carRepository.delete(Long.valueOf(id));
+        carRepository.flush();
+
+        return "redirect:/profile/cars";
     }
 
     @ModelAttribute(name = "fuelTypes")
