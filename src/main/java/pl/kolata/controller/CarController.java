@@ -31,7 +31,8 @@ import java.util.Set;
 public class CarController {
 
     private static final String REDIRECT_TO_CAR_PAGE_URL = "redirect:/profile/cars/car?id=%s",
-                                USERS_CARS_PAGE = "carsPage";
+                                USERS_CARS_PAGE_NAME = "cars",
+                                CAR_DETAILS_PAGE_NAME = "car";
     private CarRepository carRepository;
     private MessageSource messageSource;
     private UserRepository userRepository;
@@ -80,7 +81,7 @@ public class CarController {
     public String showUsersCars(Model model){
 
         model.addAttribute("carRegistrationForm",new CarRegistrationForm());
-        return USERS_CARS_PAGE;
+        return USERS_CARS_PAGE_NAME;
     }
 
     /**
@@ -97,7 +98,7 @@ public class CarController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("error",true);
-            return USERS_CARS_PAGE;
+            return USERS_CARS_PAGE_NAME;
         }
 
         model.addAttribute("error",false);
@@ -110,7 +111,7 @@ public class CarController {
      * Shows current car details page
      * @param id current car
      * @param model page model
-     * @return carPage.html
+     * @return car edition page
      */
     @GetMapping(value = "/car")
     public String showCarDetails(@RequestParam(name = "id") Long id,
@@ -120,7 +121,7 @@ public class CarController {
         model.addAttribute("car",car);
         model.addAttribute("hasImage",car.getCarImage() != null);
 
-        return "carPage";
+        return CAR_DETAILS_PAGE_NAME;
     }
 
 

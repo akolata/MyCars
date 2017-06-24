@@ -27,6 +27,7 @@ import java.util.Locale;
 @RequestMapping("/profile")
 public class ProfileController {
 
+    private static final String PROFILE_PAGE_NAME = "profile";
     private User user;
     private UserService userService;
     private UserRepository userRepository;
@@ -75,7 +76,7 @@ public class ProfileController {
         model.addAttribute("profileForm",ProfileForm.createProfileFormFromUser(user));
         model.addAttribute("image",user.getProfileImage() != null);
 
-        return "profilePage";
+        return PROFILE_PAGE_NAME;
     }
 
     /**
@@ -116,7 +117,7 @@ public class ProfileController {
     public String saveProfile(@Valid ProfileForm profileForm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "profilePage";
+            return PROFILE_PAGE_NAME;
         }
 
         user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

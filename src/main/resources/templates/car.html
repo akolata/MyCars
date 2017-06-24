@@ -50,7 +50,7 @@
                 </div>
                 <div class="input-field col s12 m6 l3">
                     <label for="mileage" th:text="#{car.label.mileage}">Mileage</label>
-                    <input id="mileage" type="text" th:field="${car.mileage}" th:errorClass="invalid" required="required"/>
+                    <input id="mileage" type="text" th:field="${car.mileage}" th:errorClass="invalid" />
                     <div th:errors="*{mileage}" class="red-text">Error</div>
                 </div>
                 <div class="input-field col s12 m6 l3">

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
 
+    private static final String LOGIN_PAGE_NAME = "login";
+
     @GetMapping
     public String showLoginPage(){
-        return "login";
+        return LOGIN_PAGE_NAME;
     }
 
     @PostMapping

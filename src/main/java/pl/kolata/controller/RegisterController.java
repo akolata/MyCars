@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kolata.dto.ProfileForm;
+import pl.kolata.entity.Authority;
 import pl.kolata.entity.User;
 import pl.kolata.repository.UserRepository;
 import pl.kolata.service.UserService;
 import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Controller used with registration page
@@ -78,6 +81,12 @@ public class RegisterController {
      */
     private void registerUserInDb(ProfileForm profileForm){
         User user = new User();
+        Authority authority = new Authority("USER");
+
+        Set<Authority> authorities = new HashSet<>();
+        authorities.add(authority);
+
+        user.setAuthorities(authorities);
         user.updateProfileFromProfileForm(profileForm);
 
         userService.saveAndFlush(user);
