@@ -13,6 +13,18 @@
             }
         });
 
+        $("#add-car-btn").on("click",function (e) {
+
+            var content = $("#add-car-div");
+
+            if(content.is(":hidden")){
+                content.show("slow");
+            }else{
+                content.hide("slow");
+            }
+
+        });
 
     });
+
 })(jQuery);

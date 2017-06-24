@@ -2,6 +2,7 @@ package pl.kolata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,12 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.kolata.dto.CarRegistrationForm;
 import pl.kolata.entity.Car;
 import pl.kolata.entity.FuelType;
+import pl.kolata.entity.User;
 import pl.kolata.repository.CarRepository;
+import pl.kolata.repository.UserRepository;
+
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Controller used to manage pages connected with cars under profile/cars/... url
@@ -24,14 +30,17 @@ import java.util.Locale;
 @RequestMapping("/profile/cars")
 public class CarController {
 
-    private static final String REDIRECT_TO_CAR_PAGE_URL = "redirect:/profile/cars/car?id=%s";
+    private static final String REDIRECT_TO_CAR_PAGE_URL = "redirect:/profile/cars/car?id=%s",
+                                USERS_CARS_PAGE = "carsPage";
     private CarRepository carRepository;
     private MessageSource messageSource;
+    private UserRepository userRepository;
 
     @Autowired
-    public CarController(CarRepository carRepository, MessageSource messageSource) {
+    public CarController(CarRepository carRepository, MessageSource messageSource, UserRepository userRepository) {
         this.carRepository = carRepository;
         this.messageSource = messageSource;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -60,6 +69,41 @@ public class CarController {
         modelAndView.addObject("error",messageSource.getMessage("image.file.too.big",null,locale));
 
         return modelAndView;
+    }
+
+    /**
+     * Method is getting user's cars from db and adding them to the model
+     * @param model page model
+     * @return page with user's cars
+     */
+    @GetMapping
+    public String showUsersCars(Model model){
+
+        model.addAttribute("carRegistrationForm",new CarRegistrationForm());
+        return USERS_CARS_PAGE;
+    }
+
+    /**
+     * Method called when user adds new car to db
+     * @param carRegistrationForm car's brand and model
+     * @param bindingResult forms validation result
+     * @param model View model
+     * @return page with users cars
+     */
+    @PostMapping(value = "/car/add")
+    public String addCarToDb(@Valid CarRegistrationForm carRegistrationForm,
+                             BindingResult bindingResult,
+                             Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("error",true);
+            return USERS_CARS_PAGE;
+        }
+
+        model.addAttribute("error",false);
+        addCarToDb(carRegistrationForm);
+
+        return "redirect:/profile/cars";
     }
 
     /**
@@ -149,6 +193,31 @@ public class CarController {
     @ModelAttribute(name = "fuelTypes")
     public FuelType[] fuelTypes(){
         return FuelType.values();
+    }
+
+    @ModelAttribute(name = "cars")
+    public Set<Car> userCars(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDb = userRepository.findByLogin(user.getLogin());
+
+        return userInDb.getCars();
+    }
+
+    /**
+     * Method used to save a new car in db and assing it to user
+     * @param carRegistrationForm new's car brand and model
+     */
+    private void addCarToDb(@Valid CarRegistrationForm carRegistrationForm) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDb = userRepository.findByLogin(user.getLogin());
+
+        Car car = new Car();
+        car.setBrand(carRegistrationForm.getBrand());
+        car.setModel(carRegistrationForm.getModel());
+        carRepository.saveAndFlush(car);
+
+        userInDb.getCars().add(car);
+        userRepository.saveAndFlush(userInDb);
     }
 
 }

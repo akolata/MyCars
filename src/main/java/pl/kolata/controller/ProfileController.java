@@ -126,19 +126,4 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    /**
-     * Method is getting user's cars from db and adding them to the model
-     * @param model page model
-     * @return page with user's cars
-     */
-    @GetMapping(value = "/cars")
-    public String showUsersCars(Model model){
-
-        user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        User userInDb = userRepository.findByLogin(user.getLogin());
-        model.addAttribute("cars",userInDb.getCars());
-
-        return "carsPage";
-    }
 }

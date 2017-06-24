@@ -16,6 +16,38 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col s12 m8 l8 offset-m2 offset-l2 center">
+            <p th:if="${error}" th:text="#{error.standard.message}" class="red-text">Error message</p>
+            <button id="add-car-btn" class="btn indigo waves-effect waves-light" th:text="#{cars.button.show}" >
+               A new car ?
+                <i class="material-icons right">library_add</i>
+            </button>
+        </div>
+    </div>
+    <div class="row" id="add-car-div" style="display: none">
+        <form method="post" th:object="${carRegistrationForm}" th:action="@{/profile/cars/car/add}" class="col s12 m8 l8 offset-m2 offset-l2">
+            <div class="col s12 m4 l4 offset-m1 offset-l1">
+                <label for="brand" th:text="#{car.label.brand}">Brand</label>
+                <input id="brand" type="text" th:field="${carRegistrationForm.brand}" th:errorClass="invalid" required="required"/>
+                <div th:errors="*{brand}" class="red-text">Error</div>
+            </div>
+            <div class="col s12 m4 l4 offset-m1 offset-l1">
+                <label for="model" th:text="#{car.label.model}">Model</label>
+                <input id="model" type="text" th:field="${carRegistrationForm.model}" th:errorClass="invalid" required="required"/>
+                <div th:errors="*{model}" class="red-text">Error</div>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 l8 offset-m2 offset-l2 center">
+                    <button class="btn indigo waves-effect waves-light"
+                            type="submit" th:text="#{cars.button.add}" >
+                        Add !
+                        <i class="mdi-content-send right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
