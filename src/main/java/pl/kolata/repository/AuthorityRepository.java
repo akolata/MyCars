@@ -8,4 +8,6 @@ import pl.kolata.entity.Authority;
  */
 public interface AuthorityRepository
 extends JpaRepository<Authority,Long>{
+
+    Authority findByAuthority(String authority);
 }

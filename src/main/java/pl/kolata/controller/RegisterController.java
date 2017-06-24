@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kolata.dto.ProfileForm;
 import pl.kolata.entity.Authority;
 import pl.kolata.entity.User;
+import pl.kolata.repository.AuthorityRepository;
 import pl.kolata.repository.UserRepository;
 import pl.kolata.service.UserService;
 import javax.validation.Valid;
@@ -28,11 +29,13 @@ public class RegisterController {
                                 LOGIN_PAGE_NAME = "login";
     private UserRepository userRepository;
     private UserService userService;
+    private AuthorityRepository authorityRepository;
 
     @Autowired
-    public RegisterController(UserRepository userRepository, UserService userService) {
+    public RegisterController(UserRepository userRepository, UserService userService, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.authorityRepository = authorityRepository;
     }
 
     /**
@@ -81,7 +84,7 @@ public class RegisterController {
      */
     private void registerUserInDb(ProfileForm profileForm){
         User user = new User();
-        Authority authority = new Authority("USER");
+        Authority authority = authorityRepository.findByAuthority("USER");
 
         Set<Authority> authorities = new HashSet<>();
         authorities.add(authority);
