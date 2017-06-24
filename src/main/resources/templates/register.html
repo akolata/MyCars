@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html ;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initialscale=1, maximum-scale=1, user-scalable=no" />
+    <link href="/webjars/materializecss/0.96.0/css/materialize.css"
+          type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <title>Register</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="indigo-text center" th:text="#{register.header}">Registration</h1>
+    <div class="row">
+        <form class="col s12 m12 l12" method="post" th:action="@{/register}" th:object="${profileForm}">
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <p th:if="${error}" th:text="#{register.error.login}" class="red-text">Error message</p>
+                    <label for="login" th:text="#{profile.label.login}">Login</label>
+                    <input type="text" id="login" th:field="${profileForm.login}" th:errorClass="invalid" required="required" class="validate"/>
+                    <div th:errors="*{login}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <label for="password" th:text="#{profile.label.password}">Password</label>
+                    <input type="password" id="password" th:field="${profileForm.password}" th:errorClass="invalid" required="required"/>
+                    <div th:errors="*{password}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <label for="firstName" th:text="#{profile.label.first}">firstName</label>
+                    <input type="text" id="firstName" th:field="${profileForm.firstName}" th:errorClass="invalid" required="required"/>
+                    <div th:errors="*{firstName}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <label for="lastName" th:text="#{profile.label.last}">lastName</label>
+                    <input type="text" id="lastName" th:field="${profileForm.lastName}" th:errorClass="invalid" required="required"/>
+                    <div th:errors="*{lastName}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col s10 offset-s1 m8 offset-m2 l8 offset-l2 center-align">
+                    <input type="submit" value="Registration" th:value="#{register.button}" class="btn btn-large"/>
+                </div>
+            </div>
+        </form>
+     </div>
+</div>
+    <script src="/webjars/jquery/2.1.4/jquery.js"></script>
+    <script src="/webjars/materializecss/0.96.0/js/materialize.js"></script>
+</body>
+</html>
+<!--https://www.pexels.com/photo/pacificcoasthighway-california-mustang-92108/-->

@@ -36,6 +36,7 @@ extends WebSecurityConfigurerAdapter{
                 .antMatchers("/templates/**").permitAll()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
