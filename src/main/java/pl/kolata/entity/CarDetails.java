@@ -25,8 +25,8 @@ public class CarDetails {
     private Float cityConsumption;
     @Column(name="HIGHWAY",precision = 1)
     private Float highwayConsumption;
-    @Column(name="YEARLY_DISTANCE",precision = 0)
-    private Long yearlyDistance;
+    @Column(name="PRODUCTION_YEAR",precision = 0)
+    private Long yearOfProduction;
 
     public CarDetails(){}
 
@@ -86,12 +86,12 @@ public class CarDetails {
         this.highwayConsumption = highwayConsumption;
     }
 
-    public Long getYearlyDistance() {
-        return yearlyDistance;
+    public Long getYearOfProduction() {
+        return yearOfProduction;
     }
 
-    public void setYearlyDistance(Long yearlyDistance) {
-        this.yearlyDistance = yearlyDistance;
+    public void setYearOfProduction(Long yearOfProduction) {
+        this.yearOfProduction = yearOfProduction;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class CarDetails {
                 ", averageConsumption=" + averageConsumption +
                 ", cityConsumption=" + cityConsumption +
                 ", highwayConsumption=" + highwayConsumption +
-                ", yearlyDistance=" + yearlyDistance +
+                ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
 }

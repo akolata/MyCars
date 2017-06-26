@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout"
+      layout:decorator="layout/template">
+<head>
+    <title>Statistics</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="indigo-text center" th:text="#{statistics.header}">Statistics</h1>
+    <div class="row">
+        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
+            <label th:text="#{statistics.label.fuel}">Average fuel cost in PLN :</label>
+            <input type="text" id="fuel-cost"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 l6 offset-m2 offset-l3">
+            <span th:text="#{statistics.cost.car}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
+            <input disabled="disabled" type="text" th:value="${carCost}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 l6 offset-m2 offset-l3">
+            <span th:text="#{statistics.cost.distance1}"></span>
+            <span th:text="${cost}" id="distance">100</span>
+            <span th:text="#{statistics.cost.distance2}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
+            <input disabled="disabled" type="text" id="total-distance-cost"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 l6 offset-m2 offset-l3">
+            <span th:text="#{statistics.cost.service}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
+            <input disabled="disabled" type="text" th:value="${serviceCost}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 l6 offset-m2 offset-l3">
+            <span th:text="#{statistics.cost.parts}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
+            <input disabled="disabled" type="text" th:value="${partsCost}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m8 l6 offset-m2 offset-l3">
+            <span th:text="#{statistics.cost.total}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
+            <input disabled="disabled" type="text" th:value="${totalsCost}"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

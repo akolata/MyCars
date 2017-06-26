@@ -1,7 +1,9 @@
 package pl.kolata.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Car entity
@@ -27,8 +29,12 @@ public class Car {
     private CarDetails carDetails;
     @Lob
     private byte[] carImage;
+    @OneToMany(mappedBy = "owner")
+    private Set<Note> notes;
 
-    public Car(){}
+    public Car(){
+        notes = new HashSet<>();
+    }
 
     public Long getId() {
         return id;
@@ -84,6 +90,14 @@ public class Car {
 
     public void setCarImage(byte[] carImage) {
         this.carImage = carImage;
+    }
+
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
     }
 
     @Override

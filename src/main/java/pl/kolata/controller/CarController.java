@@ -191,6 +191,12 @@ public class CarController {
         return "redirect:/profile/cars";
     }
 
+    @PostMapping(value = "/car",params = {"history"})
+    public String showCarHistory(@RequestParam(name = "id") String id){
+
+        return "redirect:/profile/cars/car/" + id + "/history";
+    }
+
     @ModelAttribute(name = "fuelTypes")
     public FuelType[] fuelTypes(){
         return FuelType.values();

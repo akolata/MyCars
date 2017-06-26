@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymelaf/layout"
+      layout:decorator="layout/template">
+<head>
+    <title>History</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 class="indigo-text center" th:text="#{history.header}">History</h1>
+        <form th:object="${historyNoteForm}" th:action="@{/profile/cars/car/{id}/history(id=${id})}" method="post">
+            <div class="row">
+                <div class="input-field col s12 m12 l4 offset-l2">
+                    <input id="date" type="text" class="validate" th:errorClass="invalid" th:field="${historyNoteForm.eventDate}" th:placeholder="#{history.placeholder.date}"/>
+                    <label for="date" th:text="#{history.label.date}">Date :</label>
+                    <div th:errors="*{eventDate}" class="red-text">Error</div>
+                </div>
+                <div class="input-field col s12 m12 l4">
+                    <input id="title" type="text" class="validate" th:errorClass="invalid" th:field="${historyNoteForm.title}" />
+                    <label for="title" th:text="#{history.label.title}">Title :</label>
+                    <div th:errors="*{title}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l4 offset-l2">
+                    <input id="service" type="text" class="validate" th:errorClass="invalid" th:field="${historyNoteForm.serviceCost}"/>
+                    <label for="service" th:text="#{history.label.serviceCost}">Service cost :</label>
+                    <div th:errors="*{serviceCost}" class="red-text">Error</div>
+                </div>
+                <div class="input-field col s12 m12 l4">
+                    <input id="parts" type="text" class="validate" th:errorClass="invalid" th:field="${historyNoteForm.partsCost}"/>
+                    <label for="parts" th:text="#{history.label.partsCost}">Parts cost :</label>
+                    <div th:errors="*{partsCost}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l8 offset-l2">
+                    <textarea id="name" type="text" class="materialize-textarea" th:errorClass="invalid" th:field="${historyNoteForm.eventDescription}"/>
+                    <label for="name" th:text="#{history.label.description}">Name</label>
+                    <div th:errors="*{eventDescription}" class="red-text">Error</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12 l8 offset-l2 center">
+                    <button class="btn teal waves-effect waves-light"
+                            type="submit" th:text="#{history.button}" >
+                        Add note
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col s12 m8 l8 offset-m2 offset-l2">
+                <div class="collection" id="history-notes">
+                    <a th:each="note : ${notes}" class="collection-item">
+                        <h5 th:text="|${note.title} - ${note.eventDate}|">Title</h5>
+                        <p class="note-content" style="display: none">
+                        <br/>
+                            <span th:text="#{history.label.serviceCost}">Service cost : </span><span th:text="${note.serviceCost}">cost</span>
+                            <span th:text="#{history.label.partsCost}">Service cost : </span><span th:text="${note.partsCost}">cost</span>
+                            <br/>
+                            <span th:text="#{history.label.description}">Description : </span>
+                            <br/>
+                            <span th:text="${note.eventDescription}">Desc</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

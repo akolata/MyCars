@@ -84,7 +84,7 @@ public class RunAtStart {
         carDetails.setHorsePower(180l);
         carDetails.setInsuranceDate(LocalDate.now());
         carDetails.setServiceDate(LocalDate.now());
-        carDetails.setYearlyDistance(25000l);
+        carDetails.setYearOfProduction(2015l);
 
         car.setCarDetails(carDetails);
         return car;
@@ -105,7 +105,7 @@ public class RunAtStart {
         carDetails.setHorsePower(140l);
         carDetails.setInsuranceDate(LocalDate.now());
         carDetails.setServiceDate(LocalDate.now());
-        carDetails.setYearlyDistance(5000l);
+        carDetails.setYearOfProduction(2016l);
 
         car.setCarDetails(carDetails);
         return car;
