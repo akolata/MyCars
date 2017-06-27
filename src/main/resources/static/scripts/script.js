@@ -44,16 +44,13 @@
 
         $("#history-notes .collection-item").on("click",function () {
 
-            var target = $(this),
-                listItem = target.find("p");
+            var note = $(this),
+                noteContent = note.find("p");
 
-            console.log(target);
-            console.log(listItem);
-
-            if(listItem.is(":hidden")){
-                listItem.show("slow");
+            if(noteContent.is(":hidden")){
+                noteContent.show("slow");
             }else{
-                listItem.hide("slow");
+                noteContent.hide("slow");
             }
         });
 

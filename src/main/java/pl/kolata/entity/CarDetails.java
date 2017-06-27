@@ -27,6 +27,10 @@ public class CarDetails {
     private Float highwayConsumption;
     @Column(name="PRODUCTION_YEAR",precision = 0)
     private Long yearOfProduction;
+    @Column(name = "PRICE")
+    private Long price;
+    @Column(name = "AVG_DISTANCE_PER_YEAR")
+    private Long averageDistancePerYear;
 
     public CarDetails(){}
 
@@ -94,6 +98,22 @@ public class CarDetails {
         this.yearOfProduction = yearOfProduction;
     }
 
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Long getAverageDistancePerYear() {
+        return averageDistancePerYear;
+    }
+
+    public void setAverageDistancePerYear(Long averageDistancePerYear) {
+        this.averageDistancePerYear = averageDistancePerYear;
+    }
+
     @Override
     public String toString() {
         return "CarDetails{" +
@@ -105,6 +125,8 @@ public class CarDetails {
                 ", cityConsumption=" + cityConsumption +
                 ", highwayConsumption=" + highwayConsumption +
                 ", yearOfProduction=" + yearOfProduction +
+                ", price=" + price +
+                ", averageDistancePerYear=" + averageDistancePerYear +
                 '}';
     }
 }

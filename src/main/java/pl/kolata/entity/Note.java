@@ -1,6 +1,6 @@
 package pl.kolata.entity;
 
-import pl.kolata.dto.HistoryNoteForm;
+import pl.kolata.dto.NoteDTO;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,16 +17,17 @@ public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "NOTE_ID")
     private Long id;
-    @Column(name = "NAME")
-    private String name;
-    @Column(name = "EVENT_DATE")
-    private LocalDate eventDate;
+    @Column(name = "TITLE")
+    private String title;
+    @Column(name = "DATE")
+    private LocalDate date;
     @Column(name = "SERVICE_COST")
     private Long serviceCost;
     @Column(name = "PARTS_COST")
     private Long partsCost;
-    @Column(name = "EVENT_DESC")
+    @Column(name = "CONTENT")
     @Lob
     private byte[] noteContent;
     @ManyToOne
@@ -59,12 +60,12 @@ public class Note {
         this.owner = owner;
     }
 
-    public LocalDate getEventDate() {
-        return eventDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Long getServiceCost() {
@@ -83,32 +84,30 @@ public class Note {
         this.partsCost = partsCost;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setNoteValuesFromForm(HistoryNoteForm form){
-        this.eventDate = form.getEventDate();
-        this.noteContent = form.getEventDescription().getBytes();
+    public void setNoteValuesFromForm(NoteDTO form){
+        this.date = form.getDate();
+        this.noteContent = form.getDescription().getBytes();
         this.serviceCost = form.getServiceCost();
         this.partsCost = form.getPartsCost();
-        this.name = form.getTitle();
+        this.title = form.getTitle();
     }
 
     @Override
     public String toString() {
         return "Note{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", eventDate=" + eventDate +
+                ", title='" + title + '\'' +
+                ", date=" + date +
                 ", serviceCost=" + serviceCost +
                 ", partsCost=" + partsCost +
-                ", noteContent=" + Arrays.toString(noteContent) +
-                ", owner=" + owner +
                 '}';
     }
 
