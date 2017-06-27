@@ -30,7 +30,7 @@ import java.util.Set;
 @RequestMapping("/profile/cars")
 public class CarController {
 
-    private static final String REDIRECT_TO_CAR_PAGE_URL = "redirect:/profile/cars/car?id=%s",
+    private static final String REDIRECT_TO_CAR_PAGE_URL = "redirect:/profile/cars/car/%s",
                                 USERS_CARS_PAGE_NAME = "cars",
                                 CAR_DETAILS_PAGE_NAME = "car";
     private CarRepository carRepository;
@@ -113,11 +113,11 @@ public class CarController {
      * @param model page model
      * @return car edition page
      */
-    @GetMapping(value = "/car")
-    public String showCarDetails(@RequestParam(name = "id") Long id,
+    @GetMapping(value = "/car/{id}")
+    public String showCarDetails(@PathVariable(name = "id") String id,
                                  Model model) {
 
-        Car car = carRepository.findOne(id);
+        Car car = carRepository.findOne(Long.valueOf(id));
         model.addAttribute("car",car);
         model.addAttribute("hasImage",car.getCarImage() != null);
 
@@ -134,8 +134,8 @@ public class CarController {
      * @return car edition page
      * @throws IOException if something gone wrong while reading bytes from file
      */
-    @PostMapping(value = "/car",params = {"load"})
-    public String loadCarPicture(@RequestParam(name = "id") String id,
+    @PostMapping(value = "/car/{id}",params = {"load"})
+    public String loadCarPicture(@PathVariable(name = "id") String id,
                                  MultipartFile file,
                                  RedirectAttributes redirectAttributes, Locale locale) throws IOException {
 
@@ -162,8 +162,8 @@ public class CarController {
      * @param bindingResult form results
      * @return car edition page
      */
-    @PostMapping(value = "/car",params = {"save"})
-    public String saveCarDetails(@RequestParam(name = "id") String id,
+    @PostMapping(value = "/car/{id}",params = {"save"})
+    public String saveCarDetails(@PathVariable(name = "id") String id,
                                  @Valid Car car,
                                  BindingResult bindingResult){
 
@@ -182,8 +182,8 @@ public class CarController {
      * @param id currently edited car id
      * @return page with all cars
      */
-    @PostMapping(value = "/car",params = {"delete"})
-    public String deleteCar(@RequestParam(name = "id") String id){
+    @PostMapping(value = "/car/{id}",params = {"delete"})
+    public String deleteCar(@PathVariable(name = "id") String id){
 
         carRepository.delete(Long.valueOf(id));
         carRepository.flush();
@@ -191,10 +191,14 @@ public class CarController {
         return "redirect:/profile/cars";
     }
 
-    @PostMapping(value = "/car",params = {"history"})
-    public String showCarHistory(@RequestParam(name = "id") String id){
-
+    @PostMapping(value = "/car/{id}",params = {"history"})
+    public String showCarHistory(@PathVariable(name = "id") String id){
         return "redirect:/profile/cars/car/" + id + "/history";
+    }
+
+    @PostMapping(value = "/car/{id}",params = {"statistics"})
+    public String showCarStatistics(@PathVariable(name = "id") String id){
+        return "redirect:/profile/cars/car/" + id + "/statistics";
     }
 
     @ModelAttribute(name = "fuelTypes")

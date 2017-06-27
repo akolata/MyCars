@@ -25,23 +25,6 @@
 
         });
 
-        $("#fuel-cost").change((function () {
-
-            var input=$(this),
-                cost = input.val(),
-                distance = $("#distance").html(),
-                result = $("#total-distance-cost");
-
-            var isNumber = /^[0-9.]+$/.test(cost);
-
-            if(isNumber){
-                if(cost > 0){
-                    result.val(cost * distance);
-                }
-            }
-
-        }));
-
         $("#history-notes .collection-item").on("click",function () {
 
             var note = $(this),

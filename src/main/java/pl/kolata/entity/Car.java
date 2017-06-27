@@ -32,6 +32,7 @@ public class Car {
 
     public Car(){
         notes = new ArrayList<>();
+        carDetails = new CarDetails();
     }
 
     public Long getId() {

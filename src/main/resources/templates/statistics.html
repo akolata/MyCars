@@ -10,10 +10,18 @@
 <div layout:fragment="content">
     <h1 class="indigo-text center" th:text="#{statistics.header}">Statistics</h1>
     <div class="row">
-        <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
-            <label th:text="#{statistics.label.fuel}">Average fuel cost in PLN :</label>
-            <input type="text" id="fuel-cost"/>
-        </div>
+        <form th:action="@{/profile/cars/car/{id}/statistics(id=${id})}" method="get">
+            <div class="input-field col s12 m6 l4 offset-m2 offset-l3">
+                <label th:text="#{statistics.label.fuel}">Average fuel cost in PLN :</label>
+                <input type="text" name="cost" id="fuel-cost"/>
+            </div>
+            <div class="input-field col s12 m6 l2">
+                <button class="btn teal waves-effect waves-light"
+                        type="submit" th:text="#{statistics.button.calculate}" >
+                    Calculate
+                </button>
+            </div>
+        </form>
     </div>
     <div class="row">
         <div class="col s12 m8 l6 offset-m2 offset-l3">
@@ -22,19 +30,19 @@
     </div>
     <div class="row">
         <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
-            <input disabled="disabled" type="text" th:value="${carCost}"/>
+            <input disabled="disabled" type="text" th:value="${carPrice}" id="car-price"/>
         </div>
     </div>
     <div class="row">
         <div class="col s12 m8 l6 offset-m2 offset-l3">
             <span th:text="#{statistics.cost.distance1}"></span>
-            <span th:text="${cost}" id="distance">100</span>
+            <span th:text="${distance}" id="distance">100</span>
             <span th:text="#{statistics.cost.distance2}"></span>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
-            <input disabled="disabled" type="text" id="total-distance-cost"/>
+            <input disabled="disabled" type="text" th:value="${distanceCost}" id="total-distance-cost"/>
         </div>
     </div>
     <div class="row">
@@ -44,7 +52,7 @@
     </div>
     <div class="row">
         <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
-            <input disabled="disabled" type="text" th:value="${serviceCost}"/>
+            <input disabled="disabled" type="text" th:value="${serviceCost}" id="service-cost"/>
         </div>
     </div>
     <div class="row">
@@ -54,7 +62,7 @@
     </div>
     <div class="row">
         <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
-            <input disabled="disabled" type="text" th:value="${partsCost}"/>
+            <input disabled="disabled" type="text" th:value="${partsCost}" id="parts-cost"/>
         </div>
     </div>
     <div class="row">
@@ -64,7 +72,7 @@
     </div>
     <div class="row">
         <div class="input-field col s12 m8 l6 offset-m2 offset-l3">
-            <input disabled="disabled" type="text" th:value="${totalsCost}"/>
+            <input disabled="disabled" type="text" th:value="${totalCost}" id="total-cost"/>
         </div>
     </div>
 </div>

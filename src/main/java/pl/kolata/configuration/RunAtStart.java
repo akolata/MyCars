@@ -9,7 +9,9 @@ import pl.kolata.repository.CarRepository;
 import pl.kolata.repository.UserRepository;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -86,7 +88,12 @@ public class RunAtStart {
         carDetails.setServiceDate(LocalDate.now());
         carDetails.setYearOfProduction(2015l);
 
+        List<Note> notes = new ArrayList<>();
+        notes.add(new Note("First note",LocalDate.now(),100l,100l,new String("Content first").getBytes(),car));
+        notes.add(new Note("Second note",LocalDate.now(),200l,200l,new String("Content second").getBytes(),car));
+
         car.setCarDetails(carDetails);
+        car.setNotes(notes);
         return car;
     }
 
